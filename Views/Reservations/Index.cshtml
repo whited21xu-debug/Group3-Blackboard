@@ -1,0 +1,7 @@
+@model List<Reservation>
+@{ ViewData["Title"] = "Reservations"; }
+<h1>Reservations</h1>
+<p>Reservations are persistent records stored in the SQLite database.</p>
+@if(Model.Count == 0){<div class="alert alert-secondary">No courses have been reserved yet.</div>}
+else {<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Course</th><th>Name</th><th>Major</th><th>Instructor</th><th>Reserved</th></tr></thead><tbody>@foreach(var reservation in Model){<tr><td>@reservation.Course.CourseNumber</td><td>@reservation.Course.CourseName</td><td>@reservation.Course.Major.Name</td><td>@reservation.Course.Instructor.Name</td><td>@reservation.ReservationDate.ToString("g")</td></tr>}</tbody></table></div>}
+<a asp-controller="Plan" asp-action="Index" class="btn btn-primary">View My Plan</a>

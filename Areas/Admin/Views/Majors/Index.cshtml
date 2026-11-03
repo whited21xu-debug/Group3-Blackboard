@@ -1,0 +1,4 @@
+@model List<Major>
+@{ ViewData["Title"] = "Majors"; }
+<h1>Majors</h1><a asp-action="Add" class="btn btn-primary mb-3">Add Major</a>
+<div class="table-responsive"><table class="table table-striped"><thead><tr><th>Major ID</th><th>Name</th><th>College</th><th></th><th></th></tr></thead><tbody>@foreach(var major in Model){<tr><td>@major.MajorID</td><td>@major.Name</td><td>@major.College</td><td><a asp-action="Edit" asp-route-id="@major.MajorID" class="btn btn-sm btn-outline-primary">Edit</a></td><td><a asp-action="Delete" asp-route-id="@major.MajorID" class="btn btn-sm btn-outline-danger">Delete</a></td></tr>}</tbody></table></div>

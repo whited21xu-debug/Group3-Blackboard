@@ -1,0 +1,3 @@
+@model Major
+@{ bool isNew = Model.MajorID == 0; ViewData["Title"] = isNew ? "Add Major" : "Edit Major"; }
+<h1>@ViewData["Title"]</h1><form asp-action="Edit" method="post"><input type="hidden" asp-for="MajorID"/><div asp-validation-summary="ModelOnly" class="text-danger"></div><div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control"/><span asp-validation-for="Name" class="text-danger"></span></div><div class="mb-3"><label asp-for="College" class="form-label"></label><input asp-for="College" class="form-control"/><span asp-validation-for="College" class="text-danger"></span></div><button class="btn btn-primary" type="submit">Save</button> <a asp-action="Index" class="btn btn-secondary">Cancel</a></form>

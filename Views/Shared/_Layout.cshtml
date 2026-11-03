@@ -2,37 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - Group3Blackboard</title>
-
-    <link rel="stylesheet"
-          href="~/lib/bootstrap/css/bootstrap.min.css"
-          asp-append-version="true" />
-
-    <link rel="stylesheet"
-          href="~/css/site.css"
-          asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-
 <body>
-
     <div class="site-frame">
-
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-info m-3 mb-0" role="alert">@TempData["message"]</div>
+        }
         @RenderBody()
-
-        <footer class="site-footer">
-            © 2026 - Group3Blackboard
-        </footer>
-
+        <footer class="site-footer">© 2026 - Group3Blackboard</footer>
     </div>
-
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"
-            asp-append-version="true">
-    </script>
-
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>

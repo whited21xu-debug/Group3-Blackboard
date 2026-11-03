@@ -1,0 +1,3 @@
+@model Course
+@{ ViewData["Title"] = "Delete Course"; }
+<h1>Delete Course</h1><p>Delete <strong>@Model.CourseNumber - @Model.CourseName</strong>?</p><p>Major: @Model.Major?.Name<br/>Instructor: @Model.Instructor?.Name</p><form asp-action="Delete" method="post"><input type="hidden" asp-for="CourseID"/><button class="btn btn-danger" type="submit">Delete</button> <a asp-action="Index" class="btn btn-secondary">Cancel</a></form>

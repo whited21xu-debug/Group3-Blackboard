@@ -1,0 +1,23 @@
+@model CatalogViewModel
+@{ ViewData["Title"] = "Course Catalog"; }
+<h1>Course Catalog</h1>
+<div class="row">
+    <div class="col-lg-3 mb-3">
+        <div class="card"><div class="card-body">
+            <h5>Filter Courses</h5>
+            <form asp-action="Index" method="get">
+                <div class="mb-3"><label class="form-label">Major</label><select name="major" class="form-select"><option value="all" selected="@(Model.Major == "all")">All</option>@foreach (var major in Model.Majors){<option value="@major.MajorID" selected="@(Model.Major == major.MajorID.ToString())">@major.Name</option>}</select></div>
+                <div class="mb-3"><label class="form-label">Location</label><select name="location" class="form-select"><option value="all" selected="@(Model.Location == "all")">All</option>@foreach (string location in Course.Locations){<option value="@location" selected="@(Model.Location == location)">@location</option>}</select></div>
+                <div class="mb-3"><label class="form-label">Semester</label><select name="semester" class="form-select"><option value="all" selected="@(Model.Semester == "all")">All</option>@foreach (string semester in Course.Semesters){<option value="@semester" selected="@(Model.Semester == semester)">@semester</option>}</select></div>
+                <button type="submit" class="btn btn-primary">Apply</button>
+                <a asp-action="Index" asp-route-major="all" asp-route-location="all" asp-route-semester="all" class="btn btn-outline-secondary">Reset</a>
+            </form>
+        </div></div>
+    </div>
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-2"><h2 class="h4 mb-0">Courses (@Model.Courses.Count)</h2><a asp-controller="Plan" asp-action="Index" class="btn btn-outline-primary">View My Plan</a></div>
+        <div class="table-responsive"><table class="table table-striped align-middle"><thead><tr><th>Course</th><th>Name</th><th>Credits</th><th>Semester</th><th>Location</th><th>Major</th><th>Instructor</th><th></th></tr></thead><tbody>
+        @foreach (var course in Model.Courses){<tr><td>@course.CourseNumber</td><td>@course.CourseName</td><td>@course.Credits</td><td>@course.SemesterOffered</td><td>@course.Location</td><td>@course.Major.Name</td><td>@course.Instructor.Name</td><td><form asp-controller="Plan" asp-action="Add" method="post"><input type="hidden" name="id" value="@course.CourseID" /><button class="btn btn-sm btn-primary" type="submit">Add</button></form></td></tr>}
+        </tbody></table></div>
+    </div>
+</div>
